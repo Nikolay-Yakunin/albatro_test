@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+
+:root {
+  --background: var(--color-teal);
+  --foreground: var(--color-white);
+
+  --primary: #6EBDDE;
+  --secondary: #E5E5E5;
+
+  --color-white: #FFFFFF;
+  --color-dark-blue: #001524;
+  --color-teal: #15616D;  
+  --color-cream: #FFECD1;
+  --color-orange: #FF7D00;     
+  --color-brown: #78290F; 
+  --color-gold: #FAB91F;
+}
+
+html {
+  min-height: 100vh;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
