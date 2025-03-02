@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ReactNode } from "react";
 
 type NavigationItem = {
     label?: string | React.ReactNode;
@@ -7,9 +8,10 @@ type NavigationItem = {
 
 interface NavigationProps {
     links: NavigationItem[];
+    children?: ReactNode;
 }
 
-export const Navigation = ({ links }: NavigationProps) => {
+export const Navigation = ({ links, children }: NavigationProps) => {
     return (
         <nav className="w-full">
             <ul className="flex gap-10 justify-between items-center">
@@ -20,6 +22,7 @@ export const Navigation = ({ links }: NavigationProps) => {
                         </Link>
                     </li>
                 ))}
+                {children}
             </ul>
         </nav>
     );

@@ -15,8 +15,11 @@ export const Header = () => {
     return (
         <header className="w-full place-items-center pt-[20px] md:pt-[100px] px-[20px]">
             <div className="container flex items-center justify-between mb-8 max-w-[1200px]">
-                <Navigation links={links} />
-                <UserInfo />
+                <Navigation links={links} >
+                    <li>
+                        <UserInfo />
+                    </li>
+                </Navigation>
             </div>
         </header>
     );
