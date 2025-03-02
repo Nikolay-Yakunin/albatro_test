@@ -71,9 +71,11 @@ export const SignupForm = () => {
     if (result?.error) {
       setError("Ошибка входа через социальную сеть");
     } else {
-      router.push("/dashboard");
+      router.refresh();
     }
   };
+  
+  
 
   return (
     <div className="w-full max-w-md mx-auto">
