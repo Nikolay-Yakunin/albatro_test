@@ -1,4 +1,4 @@
-import { SignupForm } from "@/features/auth/ui/SignupForm";
+import { SignupForm } from "@/src/features/auth/ui/SignupForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ export default function SignupPage() {
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-black py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <div className="bg-(--color-dark-blue) py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <SignupForm />
         </div>
       </div>

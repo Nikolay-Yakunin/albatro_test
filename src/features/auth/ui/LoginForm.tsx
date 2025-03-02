@@ -28,7 +28,7 @@ export const LoginForm = () => {
       if (result?.error) {
         setError("Неверный email или пароль");
       } else {
-        router.push("/");
+        router.push("/dashboard");
         router.refresh();
       }
     } catch (error) {
@@ -39,14 +39,14 @@ export const LoginForm = () => {
   };
 
   const handleSocialLogin = (provider: string) => {
-    signIn(provider, { callbackUrl: "/" });
+    signIn(provider, { callbackUrl: "/dashboard" });
   };
 
   return (
     <div className="w-full max-w-md mx-auto">
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label htmlFor="email" className="block text-sm font-medium">
+          <label htmlFor="email" className="block text-sm font-medium text-[var(--color-cream)]">
             Email
           </label>
           <input
@@ -55,12 +55,12 @@ export const LoginForm = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="mt-1 block w-full px-3 py-2 bg-black border border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-gray-500"
+            className="mt-1 block w-full px-3 py-2 bg-[var(--color-dark-blue)] border border-[var(--color-teal)] rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-gold)] focus:border-[var(--color-gold)] text-[var(--color-cream)]"
           />
         </div>
 
         <div>
-          <label htmlFor="password" className="block text-sm font-medium">
+          <label htmlFor="password" className="block text-sm font-medium text-[var(--color-cream)]">
             Пароль
           </label>
           <input
@@ -69,19 +69,19 @@ export const LoginForm = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="mt-1 block w-full px-3 py-2 bg-black border border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-gray-500"
+            className="mt-1 block w-full px-3 py-2 bg-[var(--color-dark-blue)] border border-[var(--color-teal)] rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-gold)] focus:border-[var(--color-gold)] text-[var(--color-cream)]"
           />
         </div>
 
         {error && (
-          <div className="text-red-500 text-sm font-medium">{error}</div>
+          <div className="text-[var(--color-orange)] text-sm font-medium">{error}</div>
         )}
 
         <div>
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-gray-500 disabled:opacity-50"
+            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-[var(--color-cream)] bg-[var(--color-teal)] hover:bg-[var(--color-dark-blue)] focus:outline-none focus:ring-2 focus:ring-[var(--color-gold)] disabled:opacity-50 transition-colors"
           >
             {isLoading ? "Вход..." : "Войти"}
           </button>
@@ -91,10 +91,10 @@ export const LoginForm = () => {
       <div className="mt-6">
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-700"></div>
+            <div className="w-full border-t border-[var(--color-teal)]"></div>
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-black text-gray-400">
+            <span className="px-2 bg-[var(--color-dark-blue)] text-[var(--color-cream)]">
               Или продолжить с
             </span>
           </div>
@@ -103,14 +103,14 @@ export const LoginForm = () => {
         <div className="mt-6 grid grid-cols-2 gap-3">
           <button
             onClick={() => handleSocialLogin("github")}
-            className="w-full flex items-center justify-center px-4 py-2 border border-gray-700 rounded-md shadow-sm text-sm font-medium text-white bg-black hover:bg-gray-800"
+            className="w-full flex items-center justify-center px-4 py-2 border border-[var(--color-teal)] rounded-md shadow-sm text-sm font-medium text-[var(--color-cream)] bg-[var(--color-dark-blue)] hover:bg-[var(--color-teal)] transition-colors"
           >
             <FaGithub className="mr-2" />
             GitHub
           </button>
           <button
             onClick={() => handleSocialLogin("google")}
-            className="w-full flex items-center justify-center px-4 py-2 border border-gray-700 rounded-md shadow-sm text-sm font-medium text-white bg-black hover:bg-gray-800"
+            className="w-full flex items-center justify-center px-4 py-2 border border-[var(--color-teal)] rounded-md shadow-sm text-sm font-medium text-[var(--color-cream)] bg-[var(--color-dark-blue)] hover:bg-[var(--color-teal)] transition-colors"
           >
             <FaGoogle className="mr-2" />
             Google
@@ -119,11 +119,11 @@ export const LoginForm = () => {
       </div>
 
       <div className="mt-6 text-center">
-        <p className="text-sm text-gray-400">
+        <p className="text-sm text-[var(--color-cream)]">
           Нет аккаунта?{" "}
           <Link
-            href="/auth/signup"
-            className="font-medium hover:text-white transition-colors"
+            href="/signup"
+            className="font-medium text-[var(--color-gold)] hover:text-[var(--color-orange)] transition-colors"
           >
             Зарегистрироваться
           </Link>

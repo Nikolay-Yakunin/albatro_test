@@ -7,7 +7,7 @@ export async function middleware(req: NextRequest) {
   const isAuthenticated = !!token;
 
   // Защищенные маршруты, требующие авторизации
-  const protectedRoutes = ["/profile"];
+  const protectedRoutes = ["/dashboard", "/profile"];
   const isProtectedRoute = protectedRoutes.some((route) =>
     req.nextUrl.pathname.startsWith(route)
   );
@@ -27,12 +27,17 @@ export async function middleware(req: NextRequest) {
 
   // Если пользователь авторизован и пытается получить доступ к маршруту авторизации
   if (isAuthenticated && isAuthRoute) {
-    return NextResponse.redirect(new URL("/", req.url));
+    return NextResponse.redirect(new URL("/dashboard", req.url));
+  }
+
+  // Перенаправление на dashboard после успешной авторизации
+  if (isAuthenticated && req.nextUrl.pathname === "/") {
+    return NextResponse.redirect(new URL("/dashboard", req.url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/profile/:path*", "/auth/:path*"],
+  matcher: ["/", "/dashboard/:path*", "/profile/:path*", "/auth/:path*"],
 }; 

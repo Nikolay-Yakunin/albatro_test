@@ -9,23 +9,24 @@ export const UserInfo = () => {
   const isLoading = status === "loading";
 
   if (isLoading) {
-    return <div className="animate-pulse h-10 w-10 rounded-full bg-gray-700"></div>;
+    return <div className="animate-pulse h-10 w-10 rounded-full bg-[var(--color-teal)] opacity-50"></div>;
   }
 
   if (!session) {
     return (
-      <div className="flex space-x-4">
+      <div className="flex space-x-0.5">
         <Link
-          href="/auth/login"
-          className="text-sm font-medium hover:text-white transition-colors"
+          href="/login"
+          className="text-sm font-medium text-[var(--color-orange)] hover:text-[var(--color-gold)] transition-colors text-nowrap"
         >
-          Войти
+          Log in
         </Link>
+        <span className="text-(--color-orange)">/</span>
         <Link
-          href="/auth/signup"
-          className="text-sm font-medium hover:text-white transition-colors"
+          href="/signup"
+          className="text-sm font-medium text-[var(--color-orange)] hover:text-[var(--color-gold)] transition-colors text-nowrap"
         >
-          Регистрация
+          Sign up
         </Link>
       </div>
     );
@@ -38,7 +39,7 @@ export const UserInfo = () => {
           className="flex items-center space-x-2 focus:outline-none"
           onClick={() => signOut({ callbackUrl: "/" })}
         >
-          <div className="w-10 h-10 relative rounded-full overflow-hidden">
+          <div className="w-10 h-10 relative rounded-full overflow-hidden border-2 border-[var(--color-gold)]">
             <Image
               src={session.user.image || "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp"}
               alt={session.user.name || "Пользователь"}
@@ -46,7 +47,7 @@ export const UserInfo = () => {
               className="object-cover"
             />
           </div>
-          <span className="text-sm font-medium">{session.user.name}</span>
+          <span className="text-sm font-medium text-[var(--color-cream)]">{session.user.name}</span>
         </button>
       </div>
     </div>

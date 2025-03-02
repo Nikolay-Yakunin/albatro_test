@@ -14,13 +14,13 @@ const handler = NextAuth({
       async authorize(credentials) {
         // Mock user
         if (
-          credentials?.email === "user@example.com" &&
+          credentials?.email === "akuninn52@gmail.com" &&
           credentials?.password === "password"
         ) {
           return {
             id: "1",
-            name: "Пользователь",
-            email: "user@example.com",
+            name: "Николай",
+            email: "akuninn52@gmail.com",
             image:
               "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp",
           };
@@ -35,12 +35,13 @@ const handler = NextAuth({
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+      allowDangerousEmailAccountLinking: true,
     }),
   ],
   pages: {
-    signIn: "/auth/login",
-    newUser: "/auth/signup",
-    error: "/auth/error",
+    signIn: "/login",
+    newUser: "/signup",
+    error: "/error",
   },
   session: {
     strategy: "jwt",
