@@ -1,6 +1,8 @@
 import Image from "next/image";
 import humanImage from "@/public/images/Human.svg";
 import { Title } from "@/src/shared/ui";
+import Link from "next/link";
+
 
 export default function Home() {
 
@@ -18,13 +20,13 @@ export default function Home() {
         <div className="max-w-[1200px] mx-auto">
           <Title size="sm" className="mb-[40px]">Ready to explore my site? <br /> Lets go!</Title>
           <div className="flex flex-col items-center md:flex-row gap-[10px] uppercase">
-            <button className="w-full md:w-auto bg-(--color-teal) px-[15px] py-[10px] uppercase">
+            <Link href="/login" className="w-full md:w-auto bg-(--color-teal) px-[15px] py-[10px] uppercase">
               Log in
-            </button>
+            </Link>
             <span className="hiden md:block uppercase">Or</span>
-            <button className="w-full md:w-auto bg-(--color-orange) px-[15px] py-[10px] uppercase">
+            <Link href="/signup" className="w-full md:w-auto bg-(--color-orange) px-[15px] py-[10px] uppercase">
               Sign up
-            </button>
+            </Link>
           </div>
         </div>
       </section>
