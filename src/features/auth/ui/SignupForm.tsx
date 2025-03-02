@@ -58,7 +58,6 @@ export const SignupForm = () => {
       if (result?.error) {
         setError("Учетная запись создана, но возникла ошибка при автоматическом входе. Пожалуйста, войдите вручную.");
       } else {
-        // Перенаправление на панель управления
         router.push("/dashboard");
         router.refresh();
       }
