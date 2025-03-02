@@ -70,8 +70,13 @@ export const SignupForm = () => {
     }
   };
 
-  const handleSocialLogin = (provider: string) => {
-    signIn(provider, { callbackUrl: "/dashboard" });
+  const handleSocialLogin = async (provider: string) => {
+    const result = await signIn(provider, { callbackUrl: "/dashboard" });
+    if (result?.error) {
+      setError("Ошибка входа через социальную сеть");
+    } else {
+      router.push("/dashboard");
+    }
   };
 
   return (
