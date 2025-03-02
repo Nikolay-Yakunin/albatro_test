@@ -44,9 +44,6 @@ export const SignupForm = () => {
       if (!response.ok) {
         setError(data.error || "Ошибка при регистрации");
         setIsLoading(false);
-      } else {
-        router.push("/dashboard");
-        router.refresh();
       }
 
       const result = await signIn("credentials", {
