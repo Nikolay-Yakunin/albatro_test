@@ -76,6 +76,7 @@ export const SignupForm = () => {
       setError("Ошибка входа через социальную сеть");
     } else {
       router.push("/dashboard");
+      router.refresh()
     }
   };
 
