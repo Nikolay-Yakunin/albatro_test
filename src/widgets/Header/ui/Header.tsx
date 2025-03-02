@@ -17,7 +17,7 @@ export const Header = () => {
             <div className="container flex items-center justify-between mb-8 max-w-[1200px]">
                 <Navigation links={links} >
                     <li>
-                        <UserInfo />
+                        <UserInfo  className="hidden lg:block" />
                     </li>
                 </Navigation>
             </div>

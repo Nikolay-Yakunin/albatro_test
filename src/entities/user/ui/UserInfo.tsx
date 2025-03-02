@@ -4,7 +4,11 @@ import { useSession, signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 
-export const UserInfo = () => {
+interface UserInfoProps {
+  className?: string;
+}
+
+export const UserInfo = (className: UserInfoProps) => {
   const { data: session, status } = useSession();
   const isLoading = status === "loading";
 
@@ -33,7 +37,7 @@ export const UserInfo = () => {
   }
 
   return (
-    <div className="flex items-center space-x-4">
+    <div className={`${className} flex items-center space-x-4`}>
       <div className="relative">
         <button
           className="flex items-center space-x-2 focus:outline-none"
