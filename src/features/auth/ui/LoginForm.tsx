@@ -31,7 +31,8 @@ export const LoginForm = () => {
         router.push("/dashboard");
         router.refresh();
       }
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (err) {
       setError("Произошла ошибка при входе");
     } finally {
       setIsLoading(false);
