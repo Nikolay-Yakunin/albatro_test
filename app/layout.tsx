@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Archivo } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import "@/app/globals.css";
 
 import { Header } from '@/src/widgets/Header/ui'
@@ -29,6 +30,7 @@ export default function RootLayout({
       <body
         className={`${archivo.className} w-full min-h-full box-border antialiased flex flex-col`}
       >
+        <SpeedInsights />
         <AuthProvider>
           <Header />
           <div className="flex-grow">

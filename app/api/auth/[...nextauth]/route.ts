@@ -2,8 +2,12 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import prisma from "@/src/shared/lib/prisma";
+import bcrypt from "bcrypt";
 
 const handler = NextAuth({
+  adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
       name: "Учетные данные",
@@ -12,20 +16,35 @@ const handler = NextAuth({
         password: { label: "Пароль", type: "password" },
       },
       async authorize(credentials) {
-        // Проверка учетных данных
-        if (
-          credentials?.email === "akuninn52@gmail.com" &&
-          credentials?.password === "password"
-        ) {
-          return {
-            id: "1",
-            name: "Николай",
-            email: "akuninn52@gmail.com",
-            image:
-              "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp",
-          };
+        if (!credentials?.email || !credentials?.password) {
+          return null;
         }
-        return null;
+
+        const user = await prisma.user.findUnique({
+          where: {
+            email: credentials.email,
+          },
+        });
+
+        if (!user || !user.password) {
+          return null;
+        }
+
+        const isPasswordValid = await bcrypt.compare(
+          credentials.password,
+          user.password
+        );
+
+        if (!isPasswordValid) {
+          return null;
+        }
+
+        return {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          image: user.image,
+        };
       },
     }),
     GithubProvider({
@@ -38,9 +57,9 @@ const handler = NextAuth({
     }),
   ],
   pages: {
-    signIn: "/login",
-    error: "/error",
-    newUser: "/signup",
+    signIn: '/login',
+    error: '/error',
+    newUser: '/signup',
   },
   session: {
     strategy: "jwt",

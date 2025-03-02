@@ -27,8 +27,28 @@ export const SignupForm = () => {
     }
 
     try {
-      // Здесь должен быть запрос к API для регистрации
-      // После успешной регистрации выполняем вход
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error || "Ошибка при регистрации");
+        setIsLoading(false);
+      } else {
+        router.push("/dashboard");
+        router.refresh();
+      }
+
       const result = await signIn("credentials", {
         redirect: false,
         email,
@@ -36,12 +56,13 @@ export const SignupForm = () => {
       });
 
       if (result?.error) {
-        setError("Ошибка при регистрации");
+        setError("Учетная запись создана, но возникла ошибка при автоматическом входе. Пожалуйста, войдите вручную.");
       } else {
+        // Перенаправление на панель управления
         router.push("/dashboard");
         router.refresh();
       }
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       setError("Произошла ошибка при регистрации");
     } finally {
