@@ -51,7 +51,7 @@ export const UserInfo = (className: UserInfoProps) => {
               className="object-cover"
             />
           </div>
-          <span className="text-sm font-medium text-[var(--color-cream)]">{session.user.name}</span>
+          <span className="hidden md:block text-sm font-medium text-[var(--color-cream)]">{session.user.name}</span>
         </button>
       </div>
     </div>
