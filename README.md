@@ -24,15 +24,8 @@ Nextjs):
 
 ### Деплой на vercel
 
-- Добавьте ваши 
--- GITHUB_ID=
--- GITHUB_SECRET=
--- GOOGLE_CLIENT_ID=
--- GOOGLE_CLIENT_SECRET=
-
-
-
-### Референсы
-- https://christianboe.com/portfolio/skybound/
-
-![Иконки](./public/image.png)
+Добавьте ваши:
+- GITHUB_ID=
+- GITHUB_SECRET=
+- GOOGLE_CLIENT_ID=
+- GOOGLE_CLIENT_SECRET=

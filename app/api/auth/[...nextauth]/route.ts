@@ -15,6 +15,7 @@ const handler = NextAuth({
         email: { label: "Email", type: "email" },
         password: { label: "Пароль", type: "password" },
       },
+
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
           return null;

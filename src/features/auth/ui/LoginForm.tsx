@@ -44,7 +44,7 @@ export const LoginForm = () => {
     if (result?.error) {
       setError("Ошибка входа через социальную сеть");
     } else {
-      router.push("/dashboard");
+      router.refresh();
     }
   };
   
