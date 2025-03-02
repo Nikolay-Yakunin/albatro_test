@@ -12,7 +12,7 @@ const handler = NextAuth({
         password: { label: "Пароль", type: "password" },
       },
       async authorize(credentials) {
-        // Mock user
+        // Проверка учетных данных
         if (
           credentials?.email === "akuninn52@gmail.com" &&
           credentials?.password === "password"
@@ -35,17 +35,18 @@ const handler = NextAuth({
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
-      allowDangerousEmailAccountLinking: true,
     }),
   ],
   pages: {
     signIn: "/login",
-    newUser: "/signup",
     error: "/error",
+    newUser: "/signup",
   },
   session: {
     strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 дней
   },
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
@@ -60,6 +61,7 @@ const handler = NextAuth({
       return session;
     },
   },
+  debug: process.env.NODE_ENV === "development",
 });
 
 export { handler as GET, handler as POST };
